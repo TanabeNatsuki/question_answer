@@ -1,0 +1,232 @@
+* {
+   margin:0px;
+   padding: 0px;
+  }
+
+body {
+  font-size:16pt;
+  font-family: "遊明朝","Yu Mincho","游明朝体","YuMincho","ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","MS P明朝",serif;
+}
+
+/*テンプレート部分*/
+ul { font-size:12pt; }
+
+img { height:200px;
+      width:400px;
+      margin-top:-70px; }
+
+.set,.login{
+  width: 100px;
+  height:50px;
+  border: solid 1px;
+  background: linear-gradient(#d3d3d3,#778899);
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+
+  }
+
+header { background-color: #708090; }
+
+.nav ul li {
+  display: block;
+  border: solid 1px;
+  background-color: #b0c4de;
+  width: 33%;
+  text-align: center;
+  float:right;
+  margin-top: 3px;
+  margin-right:1.5px;
+  }
+
+  .usericon {
+    text-align: center;
+   border-radius:  50%;
+   width: 70px;
+   height: 70px;
+   background-color: #8b008b;
+   margin-left: 120px;
+  }
+
+.newpage {
+  color: #778899;
+  width: 20%;
+  text-align:center;
+  margin-top:40px;
+  margin-left: 5px;
+}
+
+.newpage p:first-child {
+  border-bottom:solid 1px #c0c0c0;
+}
+
+/*トップページ設定*/
+.content,.content2 {
+  text-align: center;
+  background-color: #ffe4e1;
+  width:77%;
+  margin-left: 21%;
+  margin-top: -20px;
+  margin-bottom:50px;
+  border-radius: 1px 1px;
+  border: solid 1px;}
+
+/*フッター設定*/
+ .wrapper{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+ }
+
+  footer  {
+    text-align: center;
+    background-color: #4682b4;
+    width: 100%;
+    padding: 5px;
+    margin-top: 100px;
+  }
+
+  footer h1 {
+    text-align: center;
+    width: 20%;
+    margin: 10px 40%;
+    font-size: 40px;
+    background-color: #ffdead;
+    border-radius: 30px 30px;
+  }
+
+/*aタグ関連*/
+  a {
+    text-decoration: none;
+    color: #000000;}
+
+  a:hover{
+    color: #b22222;
+  }
+
+/*カテゴリ一覧ページ*/
+.category{
+  margin: -60px 0px 125px 25%;
+}
+
+  .category h1{
+    width: 20%;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: solid 5px #c0c0c0;
+  }
+
+/*ランキング一覧ページ*/
+.ranking {
+  margin: -60px 0px 125px 25%;
+}
+
+  .ranking h1{
+    width: 30%;
+    text-align: center;
+    border-bottom: solid 5px #c0c0c0;
+  }
+
+  /*ユーザーページ*/
+  .user h1{
+    font-size:30px;
+    width: 33%;
+    margin: -60px 0px 120px 25%;
+    border-bottom: solid 3px #c0c0c0;
+  }
+
+  .user p{
+    width: 33%;
+    margin: -50px 0px 55px 25%;
+  }
+
+ /*パスワード変更*/
+.pass_change {
+  margin: -60px 0px 120px 25%;
+}
+
+/*会員登録ページ*/
+.container{
+   margin: -60px 0px 125px 25%;
+}
+
+.setform table{
+  padding: 20px;
+  background-color: #778899;
+}
+
+.setform th{
+  text-align: right;
+}
+
+.setform table td{
+  color: #dc143c;
+  border:none;
+}
+
+/*確認ページ*/
+.formcheck{
+   margin: -60px 0px 125px 25%;
+   border: solid 1px #778899;
+   background-color: #c0c0c0;
+   width: 60%;
+}
+.formcheck h1{
+  text-align: center;
+  border-bottom:solid 5px #ffff00;
+  margin:0px 15px 30px 15px;
+}
+
+/*ログインページ*/
+.loginpage{
+  margin: -60px 0px 125px 25%;
+}
+
+.loginpage form{
+  padding: 10px;
+  width: 55%;
+  background-color: #d3d3d3;
+}
+
+/*質問一覧ページ*/
+.question_all{
+  margin: -60px 0px 125px 25%;
+}
+
+.question_all h1{
+  border-bottom: solid 3px #d3d3d3;
+}
+
+/*質問投稿ページ*/
+.question_form{
+  margin: -60px 0px 125px 25%;
+}
+
+.question_form h1{
+  border-bottom: solid 3px #d3d3d3;
+}
+
+.question_form textarea{
+  font-size: 30px;
+  width: 50%;
+  height: 200px;
+}
+
+/*Q&Aページ*/
+.question_content{
+  margin: -60px 0px 125px 25%;
+}
+
+.question_content table{
+   border-collapse: collapse;
+}
+
+.question_content th,td{
+  padding: 10px;
+  border: solid 1px;
+}
+
+.question_content th{
+  font-weight: bold;
+  background-color: #c0c0c0;
+}
