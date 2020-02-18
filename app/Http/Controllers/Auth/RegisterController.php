@@ -54,7 +54,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            /*'name' => 'required|string|max:255',*/
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -68,20 +68,15 @@ class RegisterController extends Controller
      */
     public function pre_check(Request $request){
       $this->validator($request->all())->validate();
-
       $request->flashOnly( 'email');
-
       $bridge_request = $request->all();
-
       $bridge_request['password_mask'] = '*******';
-
       return view('auth.register_check')->with($bridge_request);
     }
 
     protected function create(array $data)
     {
       $user = User::create([
-        'name' => $data['name'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
         'email_verify_token' => base64_encode($data['email']),
@@ -99,4 +94,29 @@ class RegisterController extends Controller
 
         return view('auth.registered');
     }
+
+   public function showForm($email_token)
+   {
+     if( !User::where('email_verify_token',$email_token)->exists() )
+     {
+       return view('auth.main.register')->with('message','無効なトークンです');
+     }else{
+       $user = User::where('email_verify_token',$email_token)->first();
+
+       if($user->status == config('const.USER_STATUS.REGISTER'))
+       {
+         logger("status".$user->status);
+         return view('auth.main.register')->with('message','すでに登録されています。ログインしてください');
+       }
+
+       $user->status = config('const.USER_STATUS.MAIL_AUTHED');
+       $user->verify_at = Carbon::now;
+       if($user->save()) {
+         return view('auth.main.register',compact('email_token'));
+       }else{
+         return view('auth.main.register')->with('message','メール認証に失敗しました');
+       }
+     }
+   }
+
 }

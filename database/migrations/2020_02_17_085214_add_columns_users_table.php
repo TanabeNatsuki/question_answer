@@ -15,7 +15,7 @@ class AddColumnsUsersTable extends Migration
     {
         Schema::table('users', function(Blueprint $table){
           $table->tinyInteger('email_verified')->default(0);
-          $table->string('email_verify_token')->nullable();
+          $table->string('email_verigy_token')->nullable();
         });
     }
 

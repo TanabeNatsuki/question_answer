@@ -25,3 +25,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('mail_send','HelloController@mail_send');
 Route::post('register/pre_check','Auth\RegisterController@pre_check')->name('register.pre_check');
+Route::get('register/verify/{token}','Auth\RegisterController@showForm');
