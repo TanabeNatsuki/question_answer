@@ -13,10 +13,9 @@ class AddColumnsUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
-          $table->tinyInteger('email_verified')->default(0);
-          $table->string('email_verigy_token')->nullable();
-        });
+      Schema::table('users', function (Blueprint $table) {
+        $table->string('name_pronunciation')->nullable();
+      });
     }
 
     /**
@@ -26,9 +25,8 @@ class AddColumnsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table){
-          $table->dropColumn('email_verified');
-          $table->dropColumn('email_verify_token');
-        });
+      Schema::table('users', function (Blueprint $table) {
+        $table->drop('name_pronunciation');
+      });
     }
 }

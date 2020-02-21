@@ -13,9 +13,9 @@ class ChangeColumnUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('name')->nullable()->change();
-        });
+      Schema::table('users', function (Blueprint $table) {
+              $table->string('name')->nullable()->change();
+          });
     }
 
     /**
@@ -25,7 +25,7 @@ class ChangeColumnUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+      Schema::table('users', function (Blueprint $table) {
             $table->string('name')->change();
         });
     }
