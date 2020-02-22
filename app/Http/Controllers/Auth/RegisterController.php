@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
+use App\Mail\RegisterShipped;
+use App\Mail\OrderMail;
+use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -40,10 +44,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+     public function __construct()
+     {
+         $this->middleware('guest');
+     }
 
     /**
      * Get a validator for an incoming registration request.
@@ -97,26 +101,26 @@ class RegisterController extends Controller
 
    public function showForm($email_token)
    {
-     if( !User::where('email_verify_token',$email_token)->exists() )
-     {
-       return view('auth.main.register')->with('message','無効なトークンです');
-     }else{
-       $user = User::where('email_verify_token',$email_token)->first();
 
-       if($user->status == config('const.USER_STATUS.REGISTER'))
-       {
-         logger("status".$user->status);
-         return view('auth.main.register')->with('message','すでに登録されています。ログインしてください');
-       }
+    if ( !User::where('email_verify_token',$email_token)->exists() )
+    {
+      return view('auth.main.register')->with('message', '無効なトークンです。');
+    } else {
+      $user = User::where('email_verify_token', $email_token)->first();
 
-       $user->status = config('const.USER_STATUS.MAIL_AUTHED');
-       $user->verify_at = Carbon::now;
-       if($user->save()) {
-         return view('auth.main.register',compact('email_token'));
-       }else{
-         return view('auth.main.register')->with('message','メール認証に失敗しました');
-       }
-     }
+      if ($user->status == config('const.USER_STATUS.REGISTER'))
+      {
+        logger("status". $user->status );
+        return view('auth.main.register')->with('message', 'すでに本登録されています。ログインして利用してください。');
+      }
+
+      $user->status = config('const.USER_STATUS.MAIL_AUTHED');
+      if($user->save()) {
+        return view('auth.main.register', compact('email_token'));
+      } else{
+        return view('auth.main.register')->with('message', 'メール認証に失敗しました。再度、メールからリンクをクリックしてください。');
+      }
+    }
    }
 
    public function mainCheck(Request $request)
@@ -137,13 +141,13 @@ class RegisterController extends Controller
 
    public function mainRegister(Request $request)
    {
-     $user = User::where('email_verify_token',$request->email_tokne)->first();
+     $user = new \stdClass();
+     $user = User::where('email_verify_token',$request->email_token)->first();
      $user->status = config('const.USER_STATUS.REGISTER');
-    $user->name = $request->name;
-    $user->name_pronunciation = $request->name_pronunciation;
-    $user->save();
+     $user->name = $request->name;
+     $user->name_pronunciation = $request->name_pronunciation;
+     $user->save();
 
-    return view('auth.main.registered');
+     return view('auth.main.registered');
    }
-
 }

@@ -31,19 +31,6 @@
                 </div>
               </div>
 
-              <div class="form-group row">
-                          <label for="birth" class="col-md-4 col-form-label text-md-right">生年月日</label>
-                          <div class="col-md-6">
-                              <span class="">{{$user->birth_year}}年</span>
-                              <input type="hidden" name="birth_year" value="{{$user->birth_year}}">
-                              <span class="">{{$user->birth_month}}月</span>
-                              <input type="hidden" name="birth_month" value="{{$user->birth_month}}">
-                              <span class="">{{$user->birth_day}}日</span>
-                              <input type="hidden" name="birth_day" value="{{$user->birth_day}}">
-                          </div>
-                      </div>
-
-
                       <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">
