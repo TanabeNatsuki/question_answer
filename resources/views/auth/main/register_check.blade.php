@@ -6,42 +6,21 @@
 
 @section('content')
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">本会員登録</div>
+  <h1>本会員登録</h1>
+  <form method="POST" action="{{ route('register.main.registered')}}">
+    @csrf
+    <tr>
 
-        <div class="card-body">
-          <form method="POST" action="{{ route('register.main.registered')}}">
-            @csrf
+    <label for="name">名前</label>
+    <span class="">{{$user->name}}</span><br>
+    <input type="hidden"  name="name" value="{{$user->name}}">
+    <input type="hidden" name="email_token" value="{{$email_token}}">
 
-            <div class="form-group row">
-              <label for="name" class="col-md-4 col-form-label text-md-right">名前</label>
-              <div class="col-md-6">
-                <span class="">{{$user->name}}</span>
-                <input type="hidden"  name="email" value="{{$user->name}}">
-              </div>
-            </div>
+    <label name="name_pronunciation">フリガナ</label>
+    <span class="">{{$user->name_pronunciation}}</span><br>
+    <input type="hidden" name="name_pronunciation" value="{{$user->name_pronunciation}}">
 
-            <div class="form-group row">
-              <label name="name_pronunciation" class="col-md-4 col-form-label text-md-right">
-                <div class="col-md-6">
-                  <span class="">{{$user->name_pronunciation}}</span>
-                  <input type="hidden" name="email" value="{{$user->name_pronunciation}}">
-                </div>
-              </div>
-
-                      <div class="form-group row mb-0">
-                          <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-primary">
-                                  本登録
-                              </button>
-                          </div>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
+    <input type="submit" value="本登録">
+  </form>
 </div>
 @endsection

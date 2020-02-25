@@ -136,18 +136,17 @@ class RegisterController extends Controller
      $user->name = $request->name;
      $user->name_pronunciation = $request->name_pronunciation;
 
-     return view('auth.main.register_check',compact('user','email_token'));
+     return view('auth.main.register_check', compact('user','email_token'));
    }
 
    public function mainRegister(Request $request)
    {
-     $user = new \stdClass();
      $user = User::where('email_verify_token',$request->email_token)->first();
      $user->status = config('const.USER_STATUS.REGISTER');
      $user->name = $request->name;
      $user->name_pronunciation = $request->name_pronunciation;
      $user->save();
 
-     return view('auth.main.registered');
+     return view('auth.main.registered',compact('user','email_token'));
    }
 }

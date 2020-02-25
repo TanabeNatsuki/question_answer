@@ -2,7 +2,7 @@
 @section('head')
 <head>
   <title>@yield('title')</title>
-  <link rel="stylesheet" href="{{ asset('css/stylesheet.css')}}">
+  <link rel="stylesheet" href="{{ asset('css2/stylesheet.css')}}">
 </head>
 @show
 <body>
@@ -38,6 +38,7 @@
   <p>新着記事</p>
   <p>もっと見る</p>
 </div>
+
 <div class="contents">
   @yield('content')
 </div>

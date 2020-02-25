@@ -33,31 +33,6 @@ class HelloController extends Controller
       return view('hello.pass_change');
     }
 
-/*会員登録ページ*/
-   public function set(Request $request)
-   {
-     return view('hello.set');
-   }
-
-/*会員登録確認ページ*/
-  public function formcheck(HelloRequest $request)
-  {
-
-    $keys = [];
-    $values = [];
-    if($request->isMethod('post'))
-    {
-      $form = $request->all();
-      $keys = array_keys($form);
-      $values = array_values($form);
-    }
-    $data = [
-      'keys' => $keys,
-      'values' => $values,
-    ];
-    return view('hello.formcheck',$data);
-  }
-
   public function login()
   {
     return view('hello.login');
@@ -76,6 +51,11 @@ class HelloController extends Controller
 public function question_content()
 {
   return view('hello.question_content');
+}
+
+public function question_complete()
+{
+  return view('hello.question_complete');
 }
 
 }

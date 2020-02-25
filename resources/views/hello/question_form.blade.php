@@ -9,12 +9,12 @@
 @section('content')
 <div class="question_form">
 <h1>質問投稿</h1>
-<form>
-  <label>タイトル:</label><input type="text" name="question_title">
-  <label>カテゴリ:</label><select></select>
-  <label>質問  :</label>
-  <textarea name="example1" cols="30" rows="50"></textarea>
-  <input id="submit_button" type="submit" name="submit" value="投稿する">
+<form action="/question_complete">
+  <label>タイトル:</label><input type="text" name="question_title"><br>
+  <label>カテゴリ:</label><select></select><br>
+  <label>質問  :</label><br>
+  <textarea name="example1" cols="30" rows="50"></textarea><br>
+  <input id="submit_button" type="submit" name="submit" value="投稿する"><br>
 </form>
 </div>
 @endsection
