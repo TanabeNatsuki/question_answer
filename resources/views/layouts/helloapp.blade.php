@@ -39,9 +39,11 @@
   <p>もっと見る</p>
 </div>
 
+<main>
 <div class="contents">
   @yield('content')
 </div>
+</main>
 
 <div class="footer">
 @yield('footer')

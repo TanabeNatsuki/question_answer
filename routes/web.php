@@ -14,7 +14,11 @@ Route::get('/',function(){return view('welcome');});
 Route::get('top','HelloController@top');
 Route::post('top','HelloController@top')->name('top');
 Route::get('ranking','HelloController@ranking');
+/*カテゴリ関連*/
 Route::get('category','HelloController@category');
+Route::get('category_add','HelloController@category_add');
+Route::post('categoried','HelloController@categoried');
+/*ユーザー情報*/
 Route::get('user','HelloController@user');
 Route::get('login','HelloController@login');
 Route::get('pass_change','HelloController@pass_change');

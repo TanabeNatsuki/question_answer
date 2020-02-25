@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illiminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\HelloRequest;
+use App\Category;
 
 class HelloController extends Controller
 {
@@ -18,9 +19,24 @@ class HelloController extends Controller
       return view('hello.ranking');
     }
 
-    public function category()
+    /*カテゴリ関連*/
+    public function category(Request $request)
     {
-      return view('hello.category');
+      $items = DB::table('categories')->get();
+      return view('hello.category',['items' => $items]);
+    }
+
+    public function category_add()
+    {
+      return view('hello.category_add');
+    }
+
+    public function categoried(Request $request)
+    {
+      $category = new Category;
+      $category->name = $request->name;
+      $category->save();
+      return view('hello.categoried');
     }
 
     public function user()
