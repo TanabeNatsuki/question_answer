@@ -12,7 +12,10 @@
   <h1>カテゴリ追加</h1>
     <form action="categoried" method="post">
       @csrf
-      <label>カテゴリ名<input type="text" name="name"></label>
+      @error('name')
+      <p>{{$message}}</p>
+      @enderror
+      <label>カテゴリ名<input type="text" name="name"></label><br>
       <input type="submit" value="送信">
     </form>
   </div>

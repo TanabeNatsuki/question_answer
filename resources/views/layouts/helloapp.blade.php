@@ -13,7 +13,8 @@
       <th><div class="set"><a href="/register">会員登録</a></div></th>
       <th><div class="login"><a href="login">ログイン</a></div></th>
       <th><a href="/top"><img src="{{ asset('image/logo.gif') }}" align="right" alt="logo"></a></th>
-      <form>
+      <form action="search" method="post">
+       @csrf
        <th><input type="text" name="search"></th>
        <th><input type="submit" value="検索"></th>
      </form>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Mail\EmailVerification;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Http\Request;
@@ -55,14 +56,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            /*'name' => 'required|string|max:255',*/
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -70,8 +63,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    public function pre_check(Request $request){
-      $this->validator($request->all())->validate();
+    public function pre_check(RegisterRequest $request){
       $request->flashOnly( 'email');
       $bridge_request = $request->all();
       $bridge_request['password_mask'] = '*******';
@@ -104,39 +96,33 @@ class RegisterController extends Controller
 
     if ( !User::where('email_verify_token',$email_token)->exists() )
     {
-      return view('auth.main.register')->with('message', '無効なトークンです。');
+       $msg = '無効なトークンです';
     } else {
       $user = User::where('email_verify_token', $email_token)->first();
-
+    }
       if ($user->status == config('const.USER_STATUS.REGISTER'))
       {
         logger("status". $user->status );
-        return view('auth.main.register')->with('message', 'すでに本登録されています。ログインして利用してください。');
+         $msg='すでに本登録されています。ログインして利用してください。';
       }
 
       $user->status = config('const.USER_STATUS.MAIL_AUTHED');
       if($user->save()) {
-        return view('auth.main.register', compact('email_token'));
+        return view('auth.main.main_register', compact('email_token'));
       } else{
-        return view('auth.main.register')->with('message', 'メール認証に失敗しました。再度、メールからリンクをクリックしてください。');
+        $msg= 'メール認証に失敗しました。再度、メールからリンクをクリックしてください。';
       }
-    }
+    return view('auth.main.main_register')->with($msg);
    }
 
-   public function mainCheck(Request $request)
+   public function mainCheck(MainRequest $request)
    {
-     $request->validate([
-       'name' => 'required|string',
-       'name_pronunciation' => 'required|string',
-     ]);
-
      $email_token = $request->email_token;
 
      $user = new User();
      $user->name = $request->name;
-     $user->name_pronunciation = $request->name_pronunciation;
 
-     return view('auth.main.register_check', compact('user','email_token'));
+     return view('auth.main.main_register_check', compact('user','email_token'));
    }
 
    public function mainRegister(Request $request)
@@ -144,9 +130,8 @@ class RegisterController extends Controller
      $user = User::where('email_verify_token',$request->email_token)->first();
      $user->status = config('const.USER_STATUS.REGISTER');
      $user->name = $request->name;
-     $user->name_pronunciation = $request->name_pronunciation;
      $user->save();
 
-     return view('auth.main.registered',compact('user','email_token'));
+     return view('auth.main.main_registered',compact('user','email_token'));
    }
 }

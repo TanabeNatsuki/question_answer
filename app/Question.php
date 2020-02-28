@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Question extends Model
 {
   protected $guarded = array('id');
 
-  public function question()
+  public function category()
   {
-    return $this->hasOne('App\Question');
+    return $this->belongsTo('App\Category');
   }
 
   public function getData()

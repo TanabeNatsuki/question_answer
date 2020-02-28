@@ -10,11 +10,17 @@
 <div class="question_form">
 <h1>質問投稿</h1>
 <form action="/question_complete">
-  <label>タイトル:</label><input type="text" name="question_title"><br>
-  <label>カテゴリ:</label><select></select><br>
+  <label>タイトル:</label><input type="text" name="title"><br>
+  <label>カテゴリ:</label>
+  <select name="category_id">
+  @foreach($items as $item)
+  <option value="{{$item->id}}">{{$item->name}}</option>
+  @endforeach
+  </select>
+  <br>
   <label>質問  :</label><br>
-  <textarea name="example1" cols="30" rows="50"></textarea><br>
-  <input id="submit_button" type="submit" name="submit" value="投稿する"><br>
+  <textarea name="content" cols="30" rows="50"></textarea><br>
+  <input type="submit" name="submit" value="投稿する"><br>
 </form>
 </div>
 @endsection

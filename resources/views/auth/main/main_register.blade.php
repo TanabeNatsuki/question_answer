@@ -31,19 +31,6 @@
         </span>
       @endif
 
-      <label for="name_pronunciation">フリガナ</label>
-
-      <input id="name_pronunciation" type="text"
-      class="form-control{{ $errors->has('name_pronunciation') ? ' is-invalid' : '' }}"
-      name="name_pronunciation" value="{{ old('name_pronunciation') }}"
-      required><br>
-
-      @if ($errors->has('name_pronunciation'))
-        <span class="invalid-feedback">
-        <strong>{{ $errors->first('name_pronunciation') }}</strong>
-        </span>
-      @endif
-
       <input type="hidden" name="email_token" value="{{$email_token}}">
 
       <input type="submit" value="確認画面へ">

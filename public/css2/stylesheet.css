@@ -11,6 +11,12 @@ body {
   min-height: 100vh;
 }
 
+li {
+  margin-right: 10px;
+  display: inline-block;
+  list-style: none;
+}
+
 main{
   flex:1;
 }
@@ -170,6 +176,11 @@ header { background-color: #708090; }
     margin: -50px 0px 55px 25%;
   }
 
+  .user_data p{
+    font-size: 40px;
+    margin-bottom: 150px;
+  }
+
  /*パスワード変更*/
 .pass_change {
   margin: -60px 0px 120px 25%;
@@ -221,4 +232,21 @@ header { background-color: #708090; }
 .question_content th{
   font-weight: bold;
   background-color: #c0c0c0;
+}
+
+/*検索機能*/
+.search_data {
+  width: 40%;
+  margin:15px 0px;
+  box-shadow:#000000 3px 3px 8px;
+  border:solid 1px;
+  border-radius: 15px;
+}
+
+.search_data p{
+  padding: 20px;
+}
+
+.created p{
+  font-size:10px;
 }
