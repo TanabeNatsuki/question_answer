@@ -18,4 +18,14 @@ class Question extends Model
     return $this->name;
   }
 
+  public function answer()
+  {
+    return $this->hasOne('App\Answer');
+  }
+
+  public function getquestion()
+  {
+    return $this->title;
+  }
+
 }

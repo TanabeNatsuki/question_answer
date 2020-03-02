@@ -3,6 +3,7 @@
 <head>
   <title>@yield('title')</title>
   <link rel="stylesheet" href="{{ asset('css2/stylesheet.css')}}">
+  <script src="{{ asset('js/script.js')}}" type="text/javascript"></script>
 </head>
 @show
 <body>
@@ -11,7 +12,7 @@
   <table>
     <tr>
       <th><div class="set"><a href="/register">会員登録</a></div></th>
-      <th><div class="login"><a href="login">ログイン</a></div></th>
+      <th><div class="login"><a href="/login">ログイン</a></div></th>
       <th><a href="/top"><img src="{{ asset('image/logo.gif') }}" align="right" alt="logo"></a></th>
       <form action="search" method="post">
        @csrf

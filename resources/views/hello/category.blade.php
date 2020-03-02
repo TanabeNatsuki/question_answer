@@ -10,7 +10,7 @@
 <div class="category">
 <h1>カテゴリ一覧</h1>
 @foreach($items as $item)
-  <p>{{$item->name}}</p>
+  <p><a href="category/all?id={{$item->id}}">{{$item->name}}</a></p>
 @endforeach
 <div class="category_add_link">
 <p><a href="/category_add">カテゴリ追加</a></p>

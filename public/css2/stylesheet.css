@@ -73,6 +73,10 @@ header { background-color: #708090; }
   border-bottom:solid 1px #c0c0c0;
 }
 
+.error_message{
+  color: #dc143c;
+}
+
 /*トップページ設定*/
 .content,.content2 {
   text-align: center;
@@ -209,29 +213,69 @@ header { background-color: #708090; }
   border-bottom: solid 3px #d3d3d3;
 }
 
-.question_form textarea{
-  font-size: 30px;
+ textarea{
+  font-size: 15px;
   width: 50%;
   height: 200px;
 }
 
 /*Q&Aページ*/
-.question_content{
-  margin: -60px 0px 125px 25%;
+.qa h1{
+  border-bottom: solid 3px #d3d3d3;
 }
 
-.question_content table{
-   border-collapse: collapse;
+.q_content p{
+  font-size: 30px;
 }
 
-.question_content th,td{
+.auth_qa {
+  margin: 10px 0px 10px 400px;
+  width: 30%;
+  background-color: #ffff00;
+  border: double 5px #dc143c;
+}
+
+.auth_qa p{
+  text-align: center;
+  font-size: 20px;
+}
+
+.auth_qa a{
+  color: #b22222;
+}
+
+.auth_qa:hover{
+  background-color: #b22222;
+}
+
+.auth_qa a:hover{
+  color: #ffff00;
+}
+
+/*回答*/
+.bestanswer{
+  text-align: center;
+  width:40%;
+  margin: 20px 0px;
+  border-bottom: double 5px #ffff00;
+}
+
+.bestanswer p{
+  color: #ff8c00;
+}
+
+.answer{
   padding: 10px;
-  border: solid 1px;
+  width: 38%;
+  margin: 0px 0px 30px 0px;
+  box-shadow:#000000 3px 3px 8px;
+  border:solid 1px;
+  border-radius:  15px;
 }
 
-.question_content th{
-  font-weight: bold;
-  background-color: #c0c0c0;
+.answer p:first-child{
+  margin-bottom: 10px;
+  border-bottom: solid 3px #dfdfdf;
 }
 
 /*検索機能*/

@@ -14,9 +14,11 @@
     @csrf
 
     @if($errors->has('email'))
+    <div class="error_message">
      <span>
        <strong>{{ $errors->first('email') }}</strong><br>
      </span>
+   </div>
     @endif
 
     <label for="email">メールアドレス</label>
@@ -25,9 +27,11 @@
    <input id="email" type="email" class="form-control{{$errors->has('email') ? 'is-invalid':''}}" name="email" value="{{ old('email') }}" required><br>
 
    @if($errors->has('password'))
+   <div class="error_message">
      <span>
       <strong>{{ $errors->first('password') }}</strong><br>
      </span>
+   </div>
    @endif
 
     <label for="password">パスワード</label>

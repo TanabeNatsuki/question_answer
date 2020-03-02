@@ -8,6 +8,7 @@
 
 @section('content')
 <div class="user">
+  @if(Auth::check())
   <h1>ユーザーネーム</h1>
   @auth
   <div class="user_data">
@@ -23,6 +24,10 @@
   <h1>所持ポイント</h1>
   <h1>ランク</h1>
   <p><a href="/pass_change">パスワードを変更</a></p>
+  @else
+  <p><a href="/login">ログインしてユーザー情報を表示</a></p>
+  <p><a href="/register">会員登録がまだな方はこちらで登録</a></p>
+  @endif
 </div>
 @endsection
 

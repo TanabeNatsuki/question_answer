@@ -18,15 +18,22 @@ Route::get('ranking','HelloController@ranking');
 Route::get('category','HelloController@category');
 Route::get('category_add','HelloController@category_add');
 Route::post('categoried','HelloController@categoried');
+Route::get('category/all','HelloController@category_all');
 /*ユーザー情報*/
 Route::get('user','HelloController@user');
 Route::post('search','HelloController@search');
 Route::get('pass_change','HelloController@pass_change');
+/*質問関連*/
 Route::get('question_all','HelloController@question_all');
 Route::get('question_form','HelloController@question_form');
-Route::get('question_content','HelloController@question_content');
+Route::get('question_all/qa','HelloController@qa');
+/*回答機能*/
+Route::post('answer_form','HelloController@answer_form');
+Route::post('answer_complete','HelloController@answer_complete');
+/*ログイン機能*/
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+/*会員登録機能*/
 Route::post('register/pre_check','Auth\RegisterController@pre_check')->name('register.pre_check');
 Route::get('register/verify/{token}','Auth\RegisterController@showForm');
 Route::post('register/main_check', 'Auth\RegisterController@mainCheck')->name('register.main.check');

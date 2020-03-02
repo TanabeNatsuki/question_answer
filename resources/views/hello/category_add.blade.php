@@ -13,7 +13,9 @@
     <form action="categoried" method="post">
       @csrf
       @error('name')
-      <p>{{$message}}</p>
+      <div class="error_message">
+        <p>{{$message}}</p>
+      </div>
       @enderror
       <label>カテゴリ名<input type="text" name="name"></label><br>
       <input type="submit" value="送信">

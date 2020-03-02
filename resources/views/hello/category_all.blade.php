@@ -4,11 +4,10 @@
 @parent
 @endsection
 
-@section('title','question_all')
+@section('title','category_all')
 
 @section('content')
-<div class="question_all">
-  <h1>質問一覧</h1>
+<div class="container">
   @foreach($items as $item)
   <div class="search_data">
     <p><a href="/question_all/qa?id={{$item->id}}">タイトル:{{$item->title}}</a></p>
@@ -16,11 +15,8 @@
     <p>投稿日: {{$item->created_at}}</p>
     <p>カテゴリ:{{$item->category->getData()}}</p>
   </div>
-</div>
-  @endforeach
-  <div class="pagent">
-    {{$items->links()}}
   </div>
+  @endforeach
 </div>
 @endsection
 
