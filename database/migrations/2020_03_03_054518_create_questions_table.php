@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnsUsersTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class AddColumnsUsersTable extends Migration
      */
     public function up()
     {
-      Schema::table('users', function (Blueprint $table) {
-        $table->string('name_pronunciation')->nullable();
-      });
+        Schema::create('questions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('category_id');
+            $table->string('title');
+            $table->string('content');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,8 +29,6 @@ class AddColumnsUsersTable extends Migration
      */
     public function down()
     {
-      Schema::table('users', function (Blueprint $table) {
-        $table->drop('name_pronunciation');
-      });
+      Schema::dropIfExists('questions');
     }
 }

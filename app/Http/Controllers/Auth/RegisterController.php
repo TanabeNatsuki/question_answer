@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Mail\EmailVerification;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\MainRequest;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Http\Request;

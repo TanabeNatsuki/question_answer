@@ -14,8 +14,6 @@
     {{$message}}
   @endisset
 
-  <p>{{$email_token}}</p>
-
   @empty($message)
   <form method="POST" action="{{ route('register.main.check') }}">
      @csrf

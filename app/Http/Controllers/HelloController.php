@@ -14,7 +14,7 @@ use App\Question;
 use App\Answer;
 use Auth;
 
-class HelloController extends Controller
+class HelloController extends DbController
 {
     /*TOPページ表示*/
     public function top()
