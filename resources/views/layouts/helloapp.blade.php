@@ -38,6 +38,10 @@
 </div>
 <div class="newpage">
   <p>新着記事</p>
+  @foreach($new as $re)
+  <P>{{$re->title}}</p>
+  <p>投稿日時{{$re->created_at}}</p>
+  @endforeach
   <p>もっと見る</p>
 </div>
 

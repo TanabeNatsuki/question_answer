@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DbController;
 use App\Http\Requests\HelloRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\QaRequest;
@@ -17,9 +18,10 @@ use Auth;
 class HelloController extends DbController
 {
     /*TOPページ表示*/
-    public function top()
+    public function top(DbController $dbcontroller)
     {
-      return view('hello.top');
+      $new = $dbcontroller->getdb();
+      return view('hello.top',['new'=>$new]);
     }
 
     /*ランキングページ*/
