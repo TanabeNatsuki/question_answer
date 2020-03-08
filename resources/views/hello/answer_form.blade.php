@@ -9,8 +9,8 @@
 @section('content')
 <div class="container">
   <h1>回答投稿フォーム</h1>
-  <p>p{{$user_id}}</p>
-  <p>q{{$question_id}}</p>
+  {{$user_id}}
+  {{$question_id}}
   <form action="/answer_complete" method="post">
     @csrf
     <textarea name="content" cols="30" rows="50"></textarea><br>

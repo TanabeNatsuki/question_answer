@@ -18,8 +18,8 @@ class UsersTableSeeder extends Seeder
         'password' => Hash::make('password123'),
         'status' => 1,
         'email_verify_token' => base64_encode('index396@gmail.com'),
-        'created_at' => time(),
-        'updated_at' => time(),
+        'created_at' => new DateTime(),
+        'updated_at' => new DateTime(),
       ]);
     }
 }

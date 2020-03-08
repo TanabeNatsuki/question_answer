@@ -14,8 +14,8 @@ class CategoriesTableSeeder extends Seeder
     {
       DB::table('categories')->insert([
         'name' => 'RPG',
-        'created_at' => time(),
-        'updated_at' => time(),
+        'created_at' => new DateTime(),
+        'updated_at' => new DateTime(),
       ]);
     }
 }

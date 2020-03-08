@@ -1,4 +1,4 @@
-@extends('layouts.helloapp')
+@extends('layouts.registers')
 
 @section('head')
 @parent

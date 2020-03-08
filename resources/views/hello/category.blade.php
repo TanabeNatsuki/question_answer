@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+<div class="container">
 <div class="category">
 <h1>カテゴリ一覧</h1>
 @foreach($items as $item)
@@ -14,6 +15,7 @@
 @endforeach
 <div class="category_add_link">
 <p><a href="/category_add">カテゴリ追加</a></p>
+</div>
 </div>
 </div>
 @endsection

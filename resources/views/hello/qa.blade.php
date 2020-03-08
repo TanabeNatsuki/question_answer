@@ -15,7 +15,6 @@
     <div class="q_content">
       <p>{{$items->content}}</p>
     </div>
-
   @if(Auth::check())
     <form action="/answer_form" method="post">
      @csrf
@@ -36,6 +35,14 @@
     <div class="answer">
       <p>回答者: {{$answer->user->getData()}}</p>
       <p>{{$answer->content}}</p>
+      {{$check}}
+    @if(Auth::check())
+    <form method="post">
+      @csrf
+      <input type="submit" name="good" value="高評価:{{$answer->good}}">
+      <input type="hidden" name="good_check" value="{{Auth::user()->id}}">
+    </form>
+    @endif
     </div>
     @endforeach
       <div class="pagent">

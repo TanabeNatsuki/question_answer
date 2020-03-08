@@ -61,6 +61,11 @@ header { background-color: #708090; }
    margin-left: 120px;
   }
 
+.error_message{
+  color: #dc143c;
+}
+
+/*サイドバー*/
 .newpage {
   color: #778899;
   width: 20%;
@@ -69,12 +74,27 @@ header { background-color: #708090; }
   margin-left: 5px;
 }
 
-.newpage p:first-child {
+.new_content p{
   border-bottom:solid 1px #c0c0c0;
 }
 
-.error_message{
-  color: #dc143c;
+.side{
+  margin: 10px 0px 10px 75px;
+  width:40%;
+}
+
+.side p{
+  border: none;
+  text-align: left;
+}
+
+.side a{
+  color: #778899;
+}
+
+.side_day p{
+  text-align: left;
+  font-size: 10px;
 }
 
 /*トップページ設定*/
@@ -82,9 +102,7 @@ header { background-color: #708090; }
   text-align: center;
   background-color: #ffe4e1;
   width:77%;
-  margin-left: 21%;
-  margin-top: -20px;
-  margin-bottom:50px;
+  margin-top: 50px;
   border-radius: 1px 1px;
   border: solid 1px;}
 
@@ -122,10 +140,6 @@ header { background-color: #708090; }
   }
 
 /*カテゴリ一覧ページ*/
-.category{
-  margin: -60px 0px 125px 25%;
-}
-
   .category h1{
     width: 20%;
     font-size: 30px;
@@ -157,10 +171,6 @@ header { background-color: #708090; }
 
 
 /*ランキング一覧ページ*/
-.ranking {
-  margin: -60px 0px 125px 25%;
-}
-
   .ranking h1{
     width: 30%;
     text-align: center;
@@ -191,15 +201,15 @@ header { background-color: #708090; }
 }
 
 /*会員登録ページ*/
+.cont{
+  margin: 30px 0px 120px 300px;
+}
+
 .container{
-   margin: -60px 0px 125px 25%;
+   margin: -180px 0px 125px 25%;
 }
 
 /*質問一覧ページ*/
-.question_all{
-  margin: -60px 0px 125px 25%;
-}
-
 .question_all h1{
   border-bottom: solid 3px #d3d3d3;
 }
@@ -217,6 +227,14 @@ header { background-color: #708090; }
   font-size: 15px;
   width: 50%;
   height: 200px;
+}
+/*ログインページ*/
+#app {
+  margin-top: 200px;
+}
+
+.conts{
+  margin: -120px 0px 0px 300px;
 }
 
 /*Q&Aページ*/

@@ -1,4 +1,4 @@
-@extends('layouts.helloapp')
+@extends('layouts.registers')
 
 @section('head')
 @parent
@@ -7,7 +7,7 @@
 @section('title','registered')
 
 @section('content')
-<div class="container">
+<div class="cont">
         <h1>仮会員登録完了</h1>
 
          <p>この度は、ご登録いただき、誠にありがとうございます。</p>

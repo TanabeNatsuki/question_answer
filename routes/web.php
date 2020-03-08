@@ -27,6 +27,7 @@ Route::get('pass_change','HelloController@pass_change');
 Route::get('question_all','HelloController@question_all');
 Route::get('question_form','HelloController@question_form');
 Route::get('question_all/qa','HelloController@qa');
+Route::post('question_all/qa','HelloController@qa_good');
 /*回答機能*/
 Route::post('answer_form','HelloController@answer_form');
 Route::post('answer_complete','HelloController@answer_complete');

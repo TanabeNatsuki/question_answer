@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
-class AnswersTableSeeder extends Seeder
+class GoodsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,11 +11,10 @@ class AnswersTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('answers')->insert([
-        'question_id' => '1',
+      DB::table('goods')->insert([
         'user_id' => '1',
-        'content' => '回答A',
-        'good' => '0',
+        'answer_id' => '1',
+        'good_or' => '0',
         'created_at' => new DateTime(),
         'updated_at' => new DateTime(),
       ]);

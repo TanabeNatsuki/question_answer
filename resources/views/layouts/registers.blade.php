@@ -36,26 +36,13 @@
     <li><a href="/ranking">ランキング</a></li>
   </ul>
 </div>
-<div class="newpage">
-  <div class="new_content">
-    <p>新着記事</p>
-  </div>
-  @foreach($new as $re)
-  <div class="side">
-    <P><a href="/question_all/qa?id={{$re->id}}">{{$re->title}}</a></p>
-    <div class="side_day">
-      <p>投稿日時{{$re->created_at}}</p>
-    </div>
-  </div>
-  @endforeach
-  <div class="new_con">
-    <p>もっと見る</p>
-  </div>
- </div>
+
 
 
 <main>
+<div class="contents">
   @yield('content')
+</div>
 </main>
 
 <div class="footer">

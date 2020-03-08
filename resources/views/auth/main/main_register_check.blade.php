@@ -1,11 +1,11 @@
-@extends('layouts.helloapp')
+@extends('layouts.registers')
 
 @section('head')
 @parent
 @endsection
 
 @section('content')
-<div class="container">
+<div class="cont">
   <h1>本会員登録</h1>
   <form method="POST" action="{{ route('register.main.registered')}}">
     @csrf

@@ -1,4 +1,4 @@
-@extends('layouts.helloapp')
+@extends('layouts.registers')
 
 @section('head')
 @parent
@@ -7,7 +7,7 @@
 @section('title','register')
 
 @section('content')
-<div class="container">
+<div class="cont">
  <h1>本会員登録</h1>
 
   @isset($message)

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="conts">
  <h1>ログイン</h1>
 
 

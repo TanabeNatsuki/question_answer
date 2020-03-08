@@ -16,8 +16,8 @@ class QuestionsTableSeeder extends Seeder
           'category_id' => '1',
           'title' => '質問A',
           'content' => '本文',
-          'created_at' => time(),
-          'updated_at' => time(),
+          'created_at' => new DateTime(),
+          'updated_at' => new DateTime(),
         ]);
     }
 }

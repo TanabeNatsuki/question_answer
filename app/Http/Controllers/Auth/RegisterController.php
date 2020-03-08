@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Mail\EmailVerification;
+use App\Http\Controllers\DbController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\MainRequest;
@@ -64,7 +65,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    public function pre_check(RegisterRequest $request){
+    public function pre_check(RegisterRequest $request)
+    {
       $request->flashOnly( 'email');
       $bridge_request = $request->all();
       $bridge_request['password_mask'] = '*******';

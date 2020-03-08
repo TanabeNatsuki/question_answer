@@ -48,13 +48,6 @@
       <li><a href="/ranking">ランキング</a></li>
     </ul>
   </div>
-  <div class="newpage">
-    <p>新着記事</p>
-    @foreach($new as $re)
-    <P>{{$re->title}}</p>
-    <p>投稿日時{{$re->created_at}}</p>
-    @endforeach
-  </div>
 
     <div id="app">
         <nav>
