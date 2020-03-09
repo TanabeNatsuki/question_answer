@@ -18,7 +18,7 @@ class CreateAnswersTable extends Migration
             $table->integer('question_id');
             $table->integer('user_id');
             $table->string('content');
-            $table->integer('good')->nullable();
+            $table->integer('good')->default(0)->nullable();
             $table->timestamps();
         });
     }

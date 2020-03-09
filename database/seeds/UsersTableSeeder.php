@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
     DB::table('users')->insert([
+        'point_id' => '1',
         'name' => 'userA',
         'email' => 'index396@gmail.com',
         'password' => Hash::make('password123'),

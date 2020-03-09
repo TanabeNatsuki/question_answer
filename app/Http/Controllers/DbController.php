@@ -12,4 +12,11 @@ class DbController extends Controller
     $newquestions = Question::orderBy('created_at','desc')->PaGinate(10);
     return $newquestions;
   }
+
+  public static function getranking()
+  {
+    $qranking = Question::orderBy('good_all','desc')->PaGinate(10);
+    return $qranking;
+  }
+
 }

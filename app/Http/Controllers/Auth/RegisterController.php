@@ -9,6 +9,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\MainRequest;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Point;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -131,6 +132,10 @@ class RegisterController extends Controller
    public function mainRegister(Request $request)
    {
      $user = User::where('email_verify_token',$request->email_token)->first();
+     $point = new Point;
+     $point->user_id = $user->id;
+     $point->save();
+     $user->point_id = $point->id;
      $user->status = config('const.USER_STATUS.REGISTER');
      $user->name = $request->name;
      $user->save();

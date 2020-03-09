@@ -14,6 +14,7 @@ use App\Category;
 use App\Good;
 use App\Question;
 use App\Answer;
+use App\Point;
 use Auth;
 
 class HelloController extends DbController
@@ -22,126 +23,150 @@ class HelloController extends DbController
     public function top(DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
-      return view('hello.top',['new'=>$new]);
+      $top = $dbcontroller->getranking();
+      return view('hello.top',compact('new','top'));
     }
 
     /*ランキングページ*/
     public function ranking(DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
+      $top = $dbcontroller->getranking();
       $items = DB::table('questions')->get();
-      return view('hello.ranking',['new'=>$new]);
+      return view('hello.ranking',compact('new','top'));
     }
 
     /*カテゴリ関連*/
     public function category(Request $request,DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
+      $top = $dbcontroller->getranking();
       $items = DB::table('categories')->get();
-      return view('hello.category',['items' => $items],['new'=>$new]);
+      return view('hello.category',compact('items','new','top'));
     }
 
     public function category_add(DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
-      return view('hello.category_add',['new'=>$new]);
+      $top = $dbcontroller->getranking();
+      return view('hello.category_add',compact('new','top'));
     }
 
     public function categoried(CategoryRequest $request,DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
+      $top = $dbcontroller->getranking();
       $items = DB::table('questions')->get();
       $category = new Category;
       $category->name = $request->name;
       $category->save();
-      return view('hello.categoried',['new'=>$new]);
+      return view('hello.categoried',compact('new','top'));
     }
 
     public function category_all(Request $request,DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
+      $top = $dbcontroller->getranking();
       $id = $request->input('id');
       $items = Question::where('category_id',$id)->get();
-      return view('hello.category_all',['items'=>$items],['new'=>$new]);
+      return view('hello.category_all',compact('new','top','items'));
     }
 
     /*ユーザーページ*/
     public function user(DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
+      $top = $dbcontroller->getranking();
       $auths = Auth::user();
-      return view('hello.user',['auths' => $auths],['new'=>$new]);
+      return view('hello.user',compact('new','top','auths'));
     }
 
     public function pass_change(DbController $dbcontroller)
     {
         $new = $dbcontroller->getdb();
-      return view('hello.pass_change',['new'=>$new]);
+        $top = $dbcontroller->getranking();
+      return view('hello.pass_change',compact('new','top'));
     }
 
     /*質問一覧*/
     public function question_all(Request $request,DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
+      $top = $dbcontroller->getranking();
       $items = Question::orderBy('created_at','desc')->Paginate(10);
-      return view('hello.question_all',['items'=>$items],['new'=>$new]);
+      return view('hello.question_all',compact('new','top','items'));
     }
 
     public function qa(Request $request,DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
+      $top = $dbcontroller->getranking();
       $id = $request->input('id');
       $answers = Answer::where('question_id',$id)
                ->orderBy('good','desc')
                ->PaGinate(10);
       $items = Question::where('id',$id)->first();
-      return view('hello.qa',compact('id','answers','items','new'));
+      return view('hello.qa',compact('id','answers','items','new','top'));
     }
 
     public function qa_good(Request $request,DbController $dbcontroller)
     {
       $new = $dbcontroller->getdb();
+      $top = $dbcontroller->getranking();
       $id = $request->input('id');
-      /*質問に対する回答を全て取得*/
       $answers = Answer::where('question_id',$id)
                ->orderBy('good','desc')
                ->PaGinate(10);
-      /*urlから取得したIDの質問を取得*/
       $items = Question::where('id',$id)->first();
-      foreach ($answers as $answer) {
-        /*答え毎かつユーザー毎のgoodを押したかを取得*/
-        $goods = Good::where('answer_id',$answer->id)->where('user_id',$request->good_check)->first();
-        if($goods == null){
+      $points = Point::where('user_id',$request->good_check)->first();
+      $all = $items->all_good;
+      foreach($answers as $answer){
+      if($answer->id == $request->goods_answer){
+         $goods = Good::where('answer_id',$request->goods_answer)->where('user_id',$request->good_check)->first();
+         if($goods == null){
            $good_add = new Good;
-           $good_add->user_id = $request->id;
-           $good_add->answer_id = $answer->id;
+           $good_add->user_id = $request->good_check;
+           $good_add->answer_id = $request->goods_answer;
            $good_add->good_or = 0;
            $good_add->save();
            $check = 0;
+           $num = 0;
         }else{
         $check = $goods->good_or;
-        }
         $num = $answer->good;
+        }
+
         if($check==0)
         {
-          $check = 1;
-          $goo = $num++;
-        }else if($check == 1){
-          $check = 0;
-          $goo = $num--;
+          $check++;
+          $num++;
+          $all++;
+        }else if($check==1){
+          $check--;
+          $num--;
+          $all--;
         }
-        $goods->good_or = $check;
-        $goods->save();
-        $answer->good=$num;
+        if($goods == null){
+          $good_add->good_or=$check;
+          $good_add->save();
+        }else{
+          $goods->good_or=$check;
+          $goods->save();
+        }
+        $items->all_good = $all;
+        $items->save();
+        $answer->good = $num;
         $answer->save();
       }
-      return view('hello.qa',compact('id','answers','items','new','check'));
+      }
+      return view('hello.qa',compact('id','answers','items','new','top','goods','ans'));
     }
 
     /*質問投稿*/
     public function question_form(DbController $dbcontroller)
     {
      $new = $dbcontroller->getdb();
+     $top = $dbcontroller->getranking();
      $items = DB::table('categories')->get();
      return view('hello.question_form',['items' => $items],['new'=>$new]);
     }

@@ -35,12 +35,13 @@
     <div class="answer">
       <p>回答者: {{$answer->user->getData()}}</p>
       <p>{{$answer->content}}</p>
-      {{$check}}
     @if(Auth::check())
-    <form method="post">
+    <form method="post" action="/question_all/qa?id={{$id}}">
       @csrf
+
       <input type="submit" name="good" value="高評価:{{$answer->good}}">
       <input type="hidden" name="good_check" value="{{Auth::user()->id}}">
+      <input type="text" name="goods_answer" value="{{$answer->id}}">
     </form>
     @endif
     </div>

@@ -32,7 +32,7 @@ Route::post('question_all/qa','HelloController@qa_good');
 Route::post('answer_form','HelloController@answer_form');
 Route::post('answer_complete','HelloController@answer_complete');
 /*ログイン機能*/
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 /*会員登録機能*/
 Route::post('register/pre_check','Auth\RegisterController@pre_check')->name('register.pre_check');
