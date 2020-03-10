@@ -16,6 +16,9 @@
 <div class="category_add_link">
 <p><a href="/category_add">カテゴリ追加</a></p>
 </div>
+<div class="to_back">
+<P><a href="/top" id="back">戻る</a></p>
+</div>
 </div>
 </div>
 @endsection
@@ -23,6 +26,15 @@
 @section('footer')
 <footer>
 <h1>ランキング</h1>
+<?php $n=1; ?>
+<div class="footers">
+@foreach($top as $to)
+<div class="foot_ranking">
+<P><a href="/question_all/qa?id={{$to->id}}">{{$n}}:{{$to->title}}</a></p>
+</div>
+<?php $n++ ?>
+@endforeach
+</div>
 <p><a href="/ranking">もっと見る</a></p>
 </footer>
 @endsection

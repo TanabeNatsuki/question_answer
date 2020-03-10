@@ -41,7 +41,9 @@
     <label for="password-confirm">パスワード（確認用）</label>
     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required><br>
 
-    <button type="submit" class="btn btn-primary">確認画面</button>
-
+    <button type="submit" class="btn btn-primary">確認画面へ</button>
+    <div class="to_back">
+    <P><a href="/top" id="back">戻る</a></p>
+    </div>
 </div>
 @endsection

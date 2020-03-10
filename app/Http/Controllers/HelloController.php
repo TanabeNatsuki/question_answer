@@ -33,7 +33,7 @@ class HelloController extends DbController
       $new = $dbcontroller->getdb();
       $top = $dbcontroller->getranking();
       $items = DB::table('questions')->get();
-      return view('hello.ranking',compact('new','top'));
+      return view('hello.ranking',compact('new','top','items'));
     }
 
     /*カテゴリ関連*/
@@ -78,7 +78,8 @@ class HelloController extends DbController
       $new = $dbcontroller->getdb();
       $top = $dbcontroller->getranking();
       $auths = Auth::user();
-      return view('hello.user',compact('new','top','auths'));
+      $point = Auth::user()->point->get_point();
+      return view('hello.user',compact('new','top','auths','point'));
     }
 
     public function pass_change(DbController $dbcontroller)
@@ -119,6 +120,7 @@ class HelloController extends DbController
                ->PaGinate(10);
       $items = Question::where('id',$id)->first();
       $points = Point::where('user_id',$request->good_check)->first();
+      $point = $points->point;
       $all = $items->all_good;
       foreach($answers as $answer){
       if($answer->id == $request->goods_answer){
@@ -141,10 +143,12 @@ class HelloController extends DbController
           $check++;
           $num++;
           $all++;
+          $point++;
         }else if($check==1){
           $check--;
           $num--;
           $all--;
+          $point--;
         }
         if($goods == null){
           $good_add->good_or=$check;
@@ -157,9 +161,11 @@ class HelloController extends DbController
         $items->save();
         $answer->good = $num;
         $answer->save();
+        $points->point = $point;
+        $points->save();
       }
       }
-      return view('hello.qa',compact('id','answers','items','new','top','goods','ans'));
+      return view('hello.qa',compact('id','answers','items','new','top','goods'));
     }
 
     /*質問投稿*/
@@ -168,7 +174,7 @@ class HelloController extends DbController
      $new = $dbcontroller->getdb();
      $top = $dbcontroller->getranking();
      $items = DB::table('categories')->get();
-     return view('hello.question_form',['items' => $items],['new'=>$new]);
+     return view('hello.question_form',compact('new','top','items'));
     }
 
     public function question_complete(QaRequest $request,DbController $dbcontroller)

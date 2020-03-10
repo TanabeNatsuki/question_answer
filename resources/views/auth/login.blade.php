@@ -35,5 +35,8 @@
          <a href="{{ route('password.request') }}">パスワードをお忘れですか？</a>
       @endif
    </form>
+   <div class="to_back">
+   <P><a href="/top" id="back">戻る</a></p>
+   </div>
 </div>
 @endsection

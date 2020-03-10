@@ -52,4 +52,9 @@ class User extends Authenticatable
       return $this->name;
     }
 
+    public function point()
+    {
+      return $this->belongsTo('App\Point');
+    }
+
 }

@@ -10,7 +10,17 @@
 <div class="container">
 <div class="ranking">
  <h1>ランキング</h1>
- <p>データベースで高評価順</p>
-</div>
+ <?php $n=1; ?>
+ @foreach($top as $to)
+ <div class="foot_ranking">
+ <P><a href="/question_all/qa?id={{$to->id}}">{{$n}}:{{$to->title}}</a></p>
+ </div>
+ <?php $n++ ?>
+ @endforeach
+ {{$top->links()}}
+ </div>
+ <div class="to_back">
+ <P><a href="/top" id="back">戻る</a></p>
+ </div>
 </div>
 @endsection

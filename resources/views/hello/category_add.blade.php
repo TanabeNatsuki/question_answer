@@ -20,6 +20,9 @@
       <label>カテゴリ名<input type="text" name="name"></label><br>
       <input type="submit" value="送信">
     </form>
+    <div class="to_back">
+    <P><a href="/top" id="back">戻る</a></p>
+    </div>
   </div>
 </div>
 @endsection

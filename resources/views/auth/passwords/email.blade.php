@@ -6,7 +6,7 @@
 
   @if (session('status'))
   <script>
-  alert('リセット用メールを送信しました');
+  send();
   </script>
   @endif
 
