@@ -7,6 +7,10 @@
 @section('title','qa')
 
 @section('content')
+<script>
+var best = '<?php echo $best ?>';
+alert(best);
+</script>
 <div class="container">
   <div class="qa">
     <h1>タイトル: {{$items->title}}</h1>

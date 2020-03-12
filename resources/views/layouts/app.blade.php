@@ -32,6 +32,7 @@
          <th><input type="text" name="search"></th>
          <th><input type="submit" value="検索"></th>
        </form>
+          @if(Auth::check())
           <th>
             <div class="usericon">
               <a href="/user">
@@ -39,6 +40,7 @@
               </a>
             </div>
           </th>
+          @endif
      </tr>
    </table>
   </header>
@@ -50,9 +52,8 @@
     </ul>
   </div>
 
-    <div id="app">
+    <div class="conts">
         <nav>
-            <div class="container">
                 <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -96,7 +97,6 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
         </nav>
 
         <main>

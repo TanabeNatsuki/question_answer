@@ -18,11 +18,15 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    static $password;
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+      'point_id' => $faker->unique()->numberBetween($min = 1,$max = 30),
+      'email' => $faker->unique()->safeEmail,
+      'password' => $password ?: $password = bcrypt('secret'),
+      'name' => $faker->name,
+      'status' => 1,
+      'email_verify_token' => base64_encode('index396@gmail.com'),
+      'created_at' => $faker->datetime($max = 'now',$timezone = date_default_timezone_get()),
+      'updated_at' => $faker->datetime($max = 'now',$timezone = date_default_timezone_get()),
     ];
 });

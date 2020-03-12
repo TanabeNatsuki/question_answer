@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="conts">
  <h1>ログイン</h1>
 
 
@@ -38,5 +37,4 @@
    <div class="to_back">
    <P><a href="/top" id="back">戻る</a></p>
    </div>
-</div>
 @endsection

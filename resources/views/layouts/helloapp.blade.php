@@ -4,6 +4,7 @@
   <title>@yield('title')</title>
   <link rel="stylesheet" href="{{ asset('css2/stylesheet.css')}}">
   <script src="{{ asset('js/script.js')}}" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 @show
 <body>
@@ -19,6 +20,7 @@
        <th><input type="text" name="search"></th>
        <th><input type="submit" value="検索"></th>
      </form>
+       @if(Auth::check())
         <th>
           <div class="usericon">
             <a href="/user">
@@ -26,6 +28,7 @@
             </a>
           </div>
         </th>
+        @endif
    </tr>
  </table>
 </header>

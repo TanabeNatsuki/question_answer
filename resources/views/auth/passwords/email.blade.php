@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="conts">
   <p>パスワードをリセットする</p>
 
   @if (session('status'))
@@ -23,5 +22,4 @@
     @enderror
     <input type="submit" name="reset" value="パスワードリセット用リンクを発行する">
    </form>
-</div>
 @endsection

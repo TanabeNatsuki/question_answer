@@ -15,8 +15,11 @@ class AddColumnsUserTable extends Migration
     {
           Schema::table('users', function (Blueprint $table) {
          $table->tinyInteger('email_verified')->default(0);
-         $table->string('email_verify_token')->nullable();
-     });
+         });
+         Schema::table('users', function (Blueprint $table) {
+        $table->string('email_verify_token')->nullable();
+        });
+
     }
 
     /**
@@ -28,7 +31,11 @@ class AddColumnsUserTable extends Migration
     {
           Schema::table('users', function (Blueprint $table) {
           $table->dropColumn('email_verified');
+          });
+
+          Schema::table('users', function (Blueprint $table) {
           $table->dropColumn('email_verify_token');
-      });
+          });
+
     }
 }

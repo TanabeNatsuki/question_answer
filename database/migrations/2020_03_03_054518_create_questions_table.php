@@ -18,7 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('category_id');
             $table->string('title');
             $table->string('content');
-            $table->integer('all_good')->default(0)->nullable();
+            $table->integer('all_good')->default(0);
             $table->timestamps();
         });
     }

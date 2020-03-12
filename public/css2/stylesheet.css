@@ -85,11 +85,15 @@ header { background-color: #708090; }
 .side{
   margin: 10px 0px 10px 75px;
   width:40%;
+  overflow: hidden;
 }
 
 .side p{
   border: none;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .side a{
@@ -203,16 +207,18 @@ header { background-color: #708090; }
   }
 
   /*ユーザーページ*/
+  .user {
+    margin: -650px 0px 125px 25%;
+  }
+
   .user h1{
     font-size:30px;
     width: 33%;
-    margin: -60px 0px 120px 25%;
     border-bottom: solid 3px #c0c0c0;
   }
 
   .user p{
     width: 33%;
-    margin: -50px 0px 55px 25%;
   }
 
   .user_data p{
@@ -231,7 +237,7 @@ header { background-color: #708090; }
 }
 
 .container{
-   margin: -180px 0px 125px 25%;
+   margin: -650px 0px 125px 25%;
 }
 
 /*質問一覧ページ*/
@@ -259,7 +265,7 @@ header { background-color: #708090; }
 }
 
 .conts{
-  margin: -120px 0px 0px 300px;
+  margin-left: 300px;
 }
 
 /*Q&Aページ*/

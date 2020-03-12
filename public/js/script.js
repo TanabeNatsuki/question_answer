@@ -8,3 +8,8 @@ function back()
   var url = document.getElementById('return');
   url.href = location.href;
 }
+
+ function best()
+{
+  alert(best);
+}

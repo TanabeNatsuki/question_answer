@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Question;
 
-class DbController extends Controller
+class TemplateController extends Controller
 {
   public static function getdb()
   {
@@ -15,7 +15,7 @@ class DbController extends Controller
 
   public static function getranking()
   {
-    $qranking = Question::orderBy('good_all','desc')->PaGinate(10);
+    $qranking = Question::orderBy('all_good','desc')->PaGinate(10);
     return $qranking;
   }
 

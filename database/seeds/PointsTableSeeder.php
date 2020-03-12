@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class PointsTableSeeder extends Seeder
 {
@@ -11,11 +12,6 @@ class PointsTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('points')->insert([
-          'user_id' => '1',
-          'point' => '0',
-          'created_at' => new DateTime(),
-          'updated_at' => new DateTime(),
-        ]);
+      factory(App\Point::class,30)->create();
     }
 }

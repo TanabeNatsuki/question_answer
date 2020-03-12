@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\DbController;
+use App\Http\Controllers\TemplateController;
 use App\Http\Requests\HelloRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\QaRequest;
@@ -17,45 +17,45 @@ use App\Answer;
 use App\Point;
 use Auth;
 
-class HelloController extends DbController
+class HelloController extends TemplateController
 {
     /*TOPページ表示*/
-    public function top(DbController $dbcontroller)
+    public function top(TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       return view('hello.top',compact('new','top'));
     }
 
     /*ランキングページ*/
-    public function ranking(DbController $dbcontroller)
+    public function ranking(TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       $items = DB::table('questions')->get();
       return view('hello.ranking',compact('new','top','items'));
     }
 
     /*カテゴリ関連*/
-    public function category(Request $request,DbController $dbcontroller)
+    public function category(Request $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       $items = DB::table('categories')->get();
       return view('hello.category',compact('items','new','top'));
     }
 
-    public function category_add(DbController $dbcontroller)
+    public function category_add(TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       return view('hello.category_add',compact('new','top'));
     }
 
-    public function categoried(CategoryRequest $request,DbController $dbcontroller)
+    public function categoried(CategoryRequest $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       $items = DB::table('questions')->get();
       $category = new Category;
       $category->name = $request->name;
@@ -63,64 +63,65 @@ class HelloController extends DbController
       return view('hello.categoried',compact('new','top'));
     }
 
-    public function category_all(Request $request,DbController $dbcontroller)
+    public function category_all(Request $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       $id = $request->input('id');
       $items = Question::where('category_id',$id)->get();
       return view('hello.category_all',compact('new','top','items'));
     }
 
     /*ユーザーページ*/
-    public function user(DbController $dbcontroller)
+    public function user(TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       $auths = Auth::user();
       $point = Auth::user()->point->get_point();
       return view('hello.user',compact('new','top','auths','point'));
     }
 
-    public function pass_change(DbController $dbcontroller)
+    public function pass_change(TemplateController $templatecontroller)
     {
-        $new = $dbcontroller->getdb();
-        $top = $dbcontroller->getranking();
+        $new = $templatecontroller->getdb();
+        $top = $templatecontroller->getranking();
       return view('hello.pass_change',compact('new','top'));
     }
 
     /*質問一覧*/
-    public function question_all(Request $request,DbController $dbcontroller)
+    public function question_all(Request $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       $items = Question::orderBy('created_at','desc')->Paginate(10);
       return view('hello.question_all',compact('new','top','items'));
     }
 
-    public function qa(Request $request,DbController $dbcontroller)
+    public function qa(Request $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       $id = $request->input('id');
       $answers = Answer::where('question_id',$id)
                ->orderBy('good','desc')
                ->PaGinate(10);
       $items = Question::where('id',$id)->first();
-      return view('hello.qa',compact('id','answers','items','new','top'));
+      $best = $items->created_at;
+      return view('hello.qa',compact('id','answers','items','new','top','best'));
     }
 
-    public function qa_good(Request $request,DbController $dbcontroller)
+    public function qa_good(Request $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
-      $top = $dbcontroller->getranking();
+      $new = $templatecontroller->getdb();
+      $top = $templatecontroller->getranking();
       $id = $request->input('id');
       $answers = Answer::where('question_id',$id)
                ->orderBy('good','desc')
                ->PaGinate(10);
       $items = Question::where('id',$id)->first();
-      $points = Point::where('user_id',$request->good_check)->first();
-      $point = $points->point;
+      $users = Auth::user();
+      $point = Auth::user()->point->get_point();
       $all = $items->all_good;
       foreach($answers as $answer){
       if($answer->id == $request->goods_answer){
@@ -161,25 +162,25 @@ class HelloController extends DbController
         $items->save();
         $answer->good = $num;
         $answer->save();
-        $points->point = $point;
-        $points->save();
+        $users->point->getpoint = $point;
+        $users->save();
       }
       }
       return view('hello.qa',compact('id','answers','items','new','top','goods'));
     }
 
     /*質問投稿*/
-    public function question_form(DbController $dbcontroller)
+    public function question_form(TemplateController $templatecontroller)
     {
-     $new = $dbcontroller->getdb();
-     $top = $dbcontroller->getranking();
+     $new = $templatecontroller->getdb();
+     $top = $templatecontroller->getranking();
      $items = DB::table('categories')->get();
      return view('hello.question_form',compact('new','top','items'));
     }
 
-    public function question_complete(QaRequest $request,DbController $dbcontroller)
+    public function question_complete(QaRequest $request,TemplateController $templatecontroller)
     {
-     $new = $dbcontroller->getdb();
+     $new = $templatecontroller->getdb();
      $question = new Question;
      $question->title = $request->title;
      $question->category_id = $request->category_id;
@@ -189,17 +190,17 @@ class HelloController extends DbController
     }
 
     /*回答機能*/
-    public function answer_form(Request $request,DbController $dbcontroller)
+    public function answer_form(Request $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
+      $new = $templatecontroller->getdb();
       $user_id = $request->user_id;
       $question_id = $request->question_id;
       return view('hello.answer_form',compact('new','user_id','question_id'));
     }
 
-    public function answer_complete(AnswerRequest $request,DbController $dbcontroller)
+    public function answer_complete(AnswerRequest $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
+      $new = $templatecontroller->getdb();
       $answer = new Answer;
       $answer->user_id = $request->user_id;
       $answer->question_id = $request->question_id;
@@ -209,9 +210,9 @@ class HelloController extends DbController
     }
 
     /*検索機能*/
-    public function search(Request $request,DbController $dbcontroller)
+    public function search(Request $request,TemplateController $templatecontroller)
     {
-      $new = $dbcontroller->getdb();
+      $new = $templatecontroller->getdb();
       $searchs = Question::where('content','like',"%".$request->search."%")->get();
       return view('hello.search',['searchs' => $searchs],['new'=>$new]);
     }

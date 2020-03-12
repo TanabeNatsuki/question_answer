@@ -12,10 +12,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('categories')->insert([
-        'name' => 'RPG',
-        'created_at' => new DateTime(),
-        'updated_at' => new DateTime(),
-      ]);
+      factory(App\Category::class,30)->create();
     }
 }

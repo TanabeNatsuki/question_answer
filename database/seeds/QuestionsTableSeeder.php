@@ -12,13 +12,6 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('questions')->insert([
-          'category_id' => '1',
-          'title' => '質問A',
-          'content' => '本文',
-          'all_good' => '0',
-          'created_at' => new DateTime(),
-          'updated_at' => new DateTime(),
-        ]);
+        factory(App\Question::class,30)->create();
     }
 }

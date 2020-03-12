@@ -133,7 +133,7 @@ class RegisterController extends Controller
    {
      $user = User::where('email_verify_token',$request->email_token)->first();
      $point = new Point;
-     $point->user_id = $user->id;
+     $point->point = 0;
      $point->save();
      $user->point_id = $point->id;
      $user->status = config('const.USER_STATUS.REGISTER');
