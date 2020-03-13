@@ -11,5 +11,13 @@ function back()
 
  function best()
 {
-  alert(best);
+  var date = new Date();
+  let goal = new Date();
+  goal.setDate(goal.getDate()+(7));
+  var day = goal.getDate() - date.getDate();
+  if(day == 0)
+  {
+    point = 10;
+    return point;
+  }
 }

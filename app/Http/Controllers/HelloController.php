@@ -15,6 +15,7 @@ use App\Good;
 use App\Question;
 use App\Answer;
 use App\Point;
+use App\User;
 use Auth;
 
 class HelloController extends TemplateController
@@ -24,6 +25,7 @@ class HelloController extends TemplateController
     {
       $new = $templatecontroller->getdb();
       $top = $templatecontroller->getranking();
+      $best = $templatecontroller->best();
       return view('hello.top',compact('new','top'));
     }
 
@@ -32,6 +34,7 @@ class HelloController extends TemplateController
     {
       $new = $templatecontroller->getdb();
       $top = $templatecontroller->getranking();
+      $best = $templatecontroller->best();
       $items = DB::table('questions')->get();
       return view('hello.ranking',compact('new','top','items'));
     }
@@ -49,6 +52,7 @@ class HelloController extends TemplateController
     {
       $new = $templatecontroller->getdb();
       $top = $templatecontroller->getranking();
+      $best = $templatecontroller->best();
       return view('hello.category_add',compact('new','top'));
     }
 
@@ -107,8 +111,7 @@ class HelloController extends TemplateController
                ->orderBy('good','desc')
                ->PaGinate(10);
       $items = Question::where('id',$id)->first();
-      $best = $items->created_at;
-      return view('hello.qa',compact('id','answers','items','new','top','best'));
+      return view('hello.qa',compact('id','answers','items','new','top','best','datetime'));
     }
 
     public function qa_good(Request $request,TemplateController $templatecontroller)
@@ -120,12 +123,12 @@ class HelloController extends TemplateController
                ->orderBy('good','desc')
                ->PaGinate(10);
       $items = Question::where('id',$id)->first();
-      $users = Auth::user();
-      $point = Auth::user()->point->get_point();
       $all = $items->all_good;
       foreach($answers as $answer){
       if($answer->id == $request->goods_answer){
          $goods = Good::where('answer_id',$request->goods_answer)->where('user_id',$request->good_check)->first();
+         $users = User::where('id',$answer->user_id)->first();
+         $point = $users->point->get_point();
          if($goods == null){
            $good_add = new Good;
            $good_add->user_id = $request->good_check;
@@ -162,8 +165,8 @@ class HelloController extends TemplateController
         $items->save();
         $answer->good = $num;
         $answer->save();
-        $users->point->getpoint = $point;
-        $users->save();
+        $users->point->point = $point;
+        $users->point->save();
       }
       }
       return view('hello.qa',compact('id','answers','items','new','top','goods'));

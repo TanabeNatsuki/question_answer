@@ -7,6 +7,7 @@
 @section('title','question_form')
 
 @section('content')
+<div class="container">
 <div class="question_form">
 <h1>質問投稿</h1>
 <form action="/question_complete">
@@ -37,6 +38,7 @@
   <textarea name="content" cols="30" rows="50"></textarea><br>
   <input type="submit" name="submit" value="投稿する"><br>
 </form>
+</div>
 </div>
 @endsection
 

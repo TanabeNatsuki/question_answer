@@ -17,6 +17,7 @@ class CreateAnswersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('question_id');
             $table->integer('user_id');
+            $table->integer('best_status')->default(0);
             $table->string('content');
             $table->integer('good')->default(0);
             $table->timestamps();

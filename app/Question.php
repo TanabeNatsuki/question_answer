@@ -20,11 +20,13 @@ class Question extends Model
 
   public function answer()
   {
-    return $this->hasOne('App\Answer');
+    return $this->hasMany('App\Answer');
   }
 
   public function getquestion()
   {
     return $this->title;
   }
+
+
 }

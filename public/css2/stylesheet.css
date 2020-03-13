@@ -246,9 +246,6 @@ header { background-color: #708090; }
 }
 
 /*質問投稿ページ*/
-.question_form{
-  margin: -60px 0px 125px 25%;
-}
 
 .question_form h1{
   border-bottom: solid 3px #d3d3d3;
@@ -304,7 +301,7 @@ header { background-color: #708090; }
 /*回答*/
 .bestanswer{
   text-align: center;
-  width:40%;
+  width:80%;
   margin: 20px 0px;
   border-bottom: double 5px #ffff00;
 }
@@ -315,7 +312,7 @@ header { background-color: #708090; }
 
 .answer{
   padding: 10px;
-  width: 38%;
+  width: 80%;
   margin: 0px 0px 30px 0px;
   box-shadow:#000000 3px 3px 8px;
   border:solid 1px;
@@ -329,7 +326,7 @@ header { background-color: #708090; }
 
 /*検索機能*/
 .search_data {
-  width: 40%;
+  width: 90%;
   margin:15px 0px;
   box-shadow:#000000 3px 3px 8px;
   border:solid 1px;

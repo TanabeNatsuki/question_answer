@@ -52,7 +52,7 @@
   </div>
   @endforeach
   <div class="new_con">
-    <p>もっと見る</p>
+    <p><a href="/question_all">もっと見る</a></p>
   </div>
  </div>
 
