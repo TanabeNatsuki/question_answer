@@ -5,8 +5,8 @@ function send()
 
 function back()
 {
-  var url = document.getElementById('return');
-  url.href = location.href;
+  var url = document.getElementById('back');
+  url.href = document.referrer;
 }
 
  function best()

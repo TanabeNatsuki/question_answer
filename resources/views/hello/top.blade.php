@@ -11,12 +11,15 @@
    <div class="content">
     <h1><a href="/question_all">質問一覧</a></h1>
    </div>
-   <div class="content2">
+   <div class="content">
      <h1><a href="/question_form">質問投稿</form></h1>
    </div>
    <div class="to_back">
-   <P><a href="/top" id="back">戻る</a></p>
-   </div>
+   <P><a href="/" id="back">戻る</a></p>
+   <script>
+   back();
+   </script>
+  </div>
 </div>
 @endsection
 

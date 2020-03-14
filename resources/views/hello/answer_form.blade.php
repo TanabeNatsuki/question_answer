@@ -9,8 +9,6 @@
 @section('content')
 <div class="container">
   <h1>回答投稿フォーム</h1>
-  {{$user_id}}
-  {{$question_id}}
   <form action="/answer_complete" method="post">
     @csrf
     <textarea name="content" cols="30" rows="50"></textarea><br>
@@ -20,6 +18,9 @@
   </form>
   <div class="to_back">
   <P><a href="/top" id="back">戻る</a></p>
+    <script>
+    back();
+    </script>
   </div>
 </div>
 @endsection

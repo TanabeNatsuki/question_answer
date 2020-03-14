@@ -20,7 +20,10 @@
  {{$top->links()}}
  </div>
  <div class="to_back">
- <P><a href="/top" id="back">戻る</a></p>
+ <P><a href="/" id="back">戻る</a></p>
+   <script>
+   back();
+   </script>
  </div>
 </div>
 @endsection

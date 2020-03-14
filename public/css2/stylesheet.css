@@ -3,6 +3,7 @@
    padding: 0px;
   }
 
+
 body {
   font-size:16pt;
   font-family: "遊明朝","Yu Mincho","游明朝体","YuMincho","ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","MS P明朝",serif;
@@ -43,7 +44,9 @@ img { height:200px;
 
   }
 
-header { background-color: #708090; }
+header {
+  width:100%;
+  background-color: #708090; }
 
 .nav ul li {
   display: block;
@@ -57,12 +60,15 @@ header { background-color: #708090; }
   }
 
   .usericon {
-    text-align: center;
-   border-radius:  50%;
-   width: 70px;
-   height: 70px;
-   background-color: #8b008b;
+   width: 80px;
+   height: 80px;
+   text-align: center;
    margin-left: 120px;
+  }
+
+  .usericon img{
+    height: 200px;
+    width: 200px;
   }
 
 .error_message{
@@ -106,13 +112,18 @@ header { background-color: #708090; }
 }
 
 /*トップページ設定*/
-.content,.content2 {
+.content{
   text-align: center;
   background-color: #ffe4e1;
+  height: 300px;
   width:77%;
   margin-top: 50px;
   border-radius: 1px 1px;
   border: solid 1px;}
+
+  .content h1{
+     margin-top: 100px;
+  }
 
 /*フッター設定*/
  .wrapper{
