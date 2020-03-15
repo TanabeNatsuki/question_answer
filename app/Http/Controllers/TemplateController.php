@@ -24,35 +24,39 @@ class TemplateController extends Controller
 
   public static function best()
   {
+    /*回答の投稿日を全て取得*/
     $questions = Question::select('id','created_at')->get();
     foreach($questions as $question)
     {
-    $best = $question->created_at;
-    $datetime = date('Y/m/d',strtotime('+1 week'.$best));
-    $today = date('Y/m/d');
-    if(strtotime($datetime)<strtotime($today))
-    {
-      if($question->best_check == 0){
-      $answer = Answer::where('question_id',$question->id)->orderBy('good','desc')->first();
-      if($answer != null){
-      $check = $answer->best_status;
-      if($check==0)
+      $best = $question;
+      /*投降日から一週間ごの日付を取得*/
+      $datetime = date('Y/m/d',strtotime('+1 week'.$best));
+      $today = date('Y/m/d');
+      /*今日の日付が登校日から7日以降か*/
+      if(strtotime($datetime)<strtotime($today))
       {
-        $user = User::where('id',$answer->user_id)->first();
-        $ten = 10;
-        $point=$user->point->get_point();
-        $point = $point+$ten;
-        $user->point->point= $point;
-        $user->point->save();
-        $answer->best_status = 1;
-        $answer->save();
-        $question->best_check = 1;
-        $question->save();
-      }
-    }
-     }
-    }
-   }
-  }
+        /*質問のベストアンサーが決まっているかどうか*/
+        if($question->best_check == 0)
+        {
+          /*高評価順で１番上の一つを取得*/
+          $answer = Answer::where('question_id',$question->id)->orderBy('good','desc')->first();
+           /*回答がないとエラーが出るのでその対策*/
+           if($answer != null)
+            {
+                /*ベストアンサーに選ばれた回答をしたユーザーにポイント付与*/
+                $user = User::where('id',$answer->user_id)->first();
+                $point=$user->point->get_point();
+                $point = $point+10;
+                $user->point->point= $point;
+                $user->point->save();
+                $answer->best_status = 1;
+                $answer->save();
+                $question->best_check = 1;
+                $question->save();
+              }
+            }
+          }
+        }
+       }
 
 }

@@ -44,6 +44,7 @@ class HelloController extends TemplateController
     {
       $new = $templatecontroller->getdb();
       $top = $templatecontroller->getranking();
+      $best = $templatecontroller->best();
       $items = DB::table('categories')->get();
       return view('hello.category',compact('items','new','top'));
     }
@@ -81,6 +82,7 @@ class HelloController extends TemplateController
     {
       $new = $templatecontroller->getdb();
       $top = $templatecontroller->getranking();
+      $best = $templatecontroller->best();
       $auths = Auth::user();
       $point = Auth::user()->point->get_point();
       return view('hello.user',compact('new','top','auths','point'));
@@ -119,16 +121,19 @@ class HelloController extends TemplateController
       $new = $templatecontroller->getdb();
       $top = $templatecontroller->getranking();
       $id = $request->input('id');
+      $items = Question::where('id',$id)->first();
+      $all = $items->all_good;
       $answers = Answer::where('question_id',$id)
                ->orderBy('good','desc')
                ->PaGinate(10);
-      $items = Question::where('id',$id)->first();
-      $all = $items->all_good;
       foreach($answers as $answer){
+      /*質問に紐づいた回答のどれが高評価ボタンを押されたか判別*/
       if($answer->id == $request->goods_answer){
+         /*誰がどの回答に高評価を押したか判別するGoodテーブルを取得*/
          $goods = Good::where('answer_id',$request->goods_answer)->where('user_id',$request->good_check)->first();
          $users = User::where('id',$answer->user_id)->first();
          $point = $users->point->get_point();
+         /*Goodテーブルがある→すでにユーザーAは回答Aに高評価済み ない→一度も押してないのでGoodテーブルも存在しない*/
          if($goods == null){
            $good_add = new Good;
            $good_add->user_id = $request->good_check;
@@ -142,8 +147,11 @@ class HelloController extends TemplateController
         $num = $answer->good;
         }
 
+        /*高評価をすでに押しているのなら、押したぶんを取り消す*/
         if($check==0)
         {
+          /*$check=Goodを押したか判別用 $num=回答に対する高評価
+          $all=質問に対する回答の高評価合計(ランキング用) $point=高評価１につき回答したユーザーに1ポイント*/
           $check++;
           $num++;
           $all++;
@@ -155,6 +163,7 @@ class HelloController extends TemplateController
           $point--;
         }
         if($goods == null){
+          /*Goodテーブルがなかった場合は最初にinsertした方でsave*/
           $good_add->good_or=$check;
           $good_add->save();
         }else{

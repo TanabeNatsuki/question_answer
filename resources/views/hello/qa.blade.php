@@ -41,7 +41,7 @@
 
       <input type="submit" name="good" value="高評価:{{$answer->good}}">
       <input type="hidden" name="good_check" value="{{Auth::user()->id}}">
-      <input type="text" name="goods_answer" value="{{$answer->id}}">
+      <input type="hidden" name="goods_answer" value="{{$answer->id}}">
     </form>
     @endif
     </div>
