@@ -22,6 +22,16 @@ main{
   flex:1;
 }
 
+main:after{
+  clear:both;
+}
+
+.main{
+  width: 60%;
+  float: left;
+  margin-left: 100px;
+}
+
 .to_back{
   margin-left: 25%;
 }
@@ -77,6 +87,7 @@ header {
 
 /*サイドバー*/
 .newpage {
+  float: left;
   color: #778899;
   width: 20%;
   text-align:center;
@@ -177,7 +188,8 @@ header {
 
 /*カテゴリ一覧ページ*/
   .category h1{
-    width: 20%;
+    margin-top: 100px;
+    width: 60%;
     font-size: 30px;
     text-align: center;
     border-bottom: solid 5px #c0c0c0;
@@ -197,9 +209,17 @@ header {
     color: #b22222;
   }
 
+  .categoried{
+    margin-top: 60px;
+  }
+
+  .category_all{
+    margin-top: 60px;
+  }
 /*カテゴリ追加ページ*/
 .category_add h1{
-  width: 30%;
+  margin-top: 60px;
+  width: 60%;
   text-align: center;
   margin-bottom: 20px;
   border-bottom: solid 3px #778899;
@@ -208,6 +228,7 @@ header {
 
 /*ランキング一覧ページ*/
   .ranking h1{
+    margin-top: 60px;
     width: 30%;
     text-align: center;
     border-bottom: solid 5px #c0c0c0;
@@ -218,11 +239,9 @@ header {
   }
 
   /*ユーザーページ*/
-  .user {
-    margin: -650px 0px 125px 25%;
-  }
 
   .user h1{
+    margin-top: 60px;
     font-size:30px;
     width: 33%;
     border-bottom: solid 3px #c0c0c0;
@@ -246,13 +265,9 @@ header {
 .cont{
   margin: 30px 0px 120px 300px;
 }
-
-.container{
-   margin: -650px 0px 125px 25%;
-}
-
 /*質問一覧ページ*/
 .question_all h1{
+  margin-top: 60px;
   border-bottom: solid 3px #d3d3d3;
 }
 
@@ -266,6 +281,10 @@ header {
   font-size: 15px;
   width: 50%;
   height: 200px;
+}
+
+.q_comp{
+  margin-top: 60px;
 }
 /*ログインページ*/
 #app {

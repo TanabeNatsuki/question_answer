@@ -7,7 +7,7 @@
 @section('title','categoried')
 
 @section('content')
-<div class="container">
+<div class="categoried">
 <p>カテゴリ追加が完了しました</p>
 <p><a href="/category">カテゴリ一覧に戻る</a></p>
 </div>

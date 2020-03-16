@@ -7,7 +7,7 @@
 @section('title','category_all')
 
 @section('content')
-<div class="container">
+<div class="category_all">
   @foreach($items as $item)
   <div class="search_data">
     <p><a href="/question_all/qa?id={{$item->id}}">タイトル:{{$item->title}}</a></p>

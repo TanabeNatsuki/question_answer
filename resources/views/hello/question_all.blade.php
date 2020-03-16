@@ -7,7 +7,6 @@
 @section('title','question_all')
 
 @section('content')
-<div class="container">
 <div class="question_all">
   <h1>質問一覧</h1>
   @foreach($items as $item)
@@ -28,7 +27,6 @@
     back();
     </script>
   </div>
-</div>
 </div>
 @endsection
 

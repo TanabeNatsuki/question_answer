@@ -39,7 +39,9 @@
     <li><a href="/ranking">ランキング</a></li>
   </ul>
 </div>
-<div class="newpage">
+
+<main>
+ <div class="newpage">
   <div class="new_content">
     <p>新着記事</p>
   </div>
@@ -56,10 +58,11 @@
   </div>
  </div>
 
-
-<main>
-  @yield('content')
+  <div class="main">
+    @yield('content')
+  </div>
 </main>
+</div>
 
 <div class="footer">
 @yield('footer')
