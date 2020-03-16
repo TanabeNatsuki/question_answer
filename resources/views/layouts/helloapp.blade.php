@@ -2,8 +2,8 @@
 @section('head')
 <head>
   <title>@yield('title')</title>
-  <link rel="stylesheet" href="{{ asset('css2/stylesheet.css')}}">
-  <script src="{{ asset('js/script.js')}}" type="text/javascript"></script>
+  <link rel="stylesheet" href="{{ mix('css2/stylesheet.css')}}">
+  <script src="{{ mix('js/script.js')}}" type="text/javascript"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 @show
@@ -14,7 +14,7 @@
     <tr>
       <th><div class="set"><a href="/register">会員登録</a></div></th>
       <th><div class="login"><a href="/login">ログイン</a></div></th>
-      <div class="logo"><th><a href="/top"><img src="{{ asset('image/logo.gif') }}" align="right" alt="logo"></a></th></div>
+      <div class="logo"><th><a href="/top"><img src="{{ mix('image/logo.gif') }}" align="right" alt="logo"></a></th></div>
       <form action="search" method="post">
        @csrf
        <th><input type="text" name="search"></th>
@@ -24,7 +24,7 @@
         <th>
           <div class="usericon">
             <a href="/user">
-              <img src="{{ asset('image/icon.png')}}" alt="userimage">
+              <img src="{{ mix('image/icon.png')}}" alt="userimage">
             </a>
           </div>
         </th>

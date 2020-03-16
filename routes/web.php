@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/','HelloController@top');
+Route::get('/',function(){return view('welcome');});
 Route::get('top','HelloController@top');
 Route::post('top','HelloController@top')->name('top');
 Route::get('ranking','HelloController@ranking');
@@ -40,3 +40,5 @@ Route::get('register/verify/{token}','Auth\RegisterController@showForm');
 Route::post('register/main_check', 'Auth\RegisterController@mainCheck')->name('register.main.check');
 Route::post('register/main_register', 'Auth\RegisterController@mainRegister')->name('register.main.registered');
 Route::get('question_complete','HelloController@question_complete');
+Route::get('delete','HelloController@delete');
+Route::post('deleted','HelloController@deleted');

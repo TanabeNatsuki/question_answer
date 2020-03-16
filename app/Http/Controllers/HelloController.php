@@ -229,4 +229,15 @@ class HelloController extends TemplateController
       return view('hello.search',['searchs' => $searchs],['new'=>$new]);
     }
 
+    public function delete()
+    {
+      return view('auth.delete');
+    }
+
+    public function deleted(Request $request)
+    {
+      $email = User::where('email',$request->delete_data)->delete();
+      return view('auth.deleted');
+    }
+
 }

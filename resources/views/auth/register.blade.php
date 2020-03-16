@@ -9,7 +9,7 @@
 @section('content')
 <div class="cont">
   <h1>仮会員登録</h1>
-
+  <p><a href="/delete">登録解除</a></p>
   <form method="POST" action="{{ route('register.pre_check')}}">
     @csrf
 

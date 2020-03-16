@@ -11,14 +11,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/script.js')}}" type="text/javascript"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/script.js')}}" type="text/javascript"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css2/stylesheet.css')}}">
+    <link rel="stylesheet" href="{{ mix('css2/stylesheet.css')}}">
 </head>
 @show
 <body>
@@ -27,7 +27,7 @@
       <tr>
         <th><div class="set"><a href="/register">会員登録</a></div></th>
         <th><div class="login"><a href="/login">ログイン</a></div></th>
-        <th><a href="/top"><img src="{{ asset('image/logo.gif') }}" align="right" alt="logo"></a></th>
+        <th><a href="/top"><img src="{{ mix('image/logo.gif') }}" align="right" alt="logo"></a></th>
         <form>
          <th><input type="text" name="search"></th>
          <th><input type="submit" value="検索"></th>
@@ -36,7 +36,7 @@
           <th>
             <div class="usericon">
               <a href="/user">
-               <img src="{{ asset('image/icon.png')}}" alt="userimage">
+               <img src="{{ mix('image/icon.png')}}" alt="userimage">
               </a>
             </div>
           </th>
